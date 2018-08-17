@@ -4,12 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fb000000"
+    android:gravity="center"
     tools:context="com.tes.hexavara.hexavara_tes.LoginActivity">
 
+    <ImageView
+        android:id="@+id/hexavara"
+        android:layout_width="230dp"
+        android:layout_height="196dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        app:srcCompat="@mipmap/hexavaraicon" />
+
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#95ffffff"
+        android:layout_width="335dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="140dp"
+        android:layout_marginLeft="25sp"
+        android:layout_marginRight="25sp"
+        android:background="#000000"
         android:gravity="center"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="50dp"
@@ -18,49 +34,37 @@
         <EditText
             android:id="@+id/txtuser"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
+            android:layout_height="match_parent"
             android:ems="10"
-            android:hint="Usernme or Email"
-            android:inputType="textPersonName" />
+            android:hint="Username or Email"
+            android:inputType="textPersonName"
+            android:layout_marginBottom="2dp"
+            android:textColor="#ffffff"
+            android:textColorHint="#ffffff" />
 
         <EditText
             android:id="@+id/usrpass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
             android:ems="10"
             android:hint="Password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:layout_marginBottom="2dp"
+            android:textColor="#ffffff"
+            android:textColorHint="#ffffff" />
 
         <Button
             android:id="@+id/btnlogin"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            android:background="@android:color/holo_blue_light"
-            android:text="Login" />
+            android:layout_height="35dp"
+            android:background="#8eeeff"
+            android:ems="10"
+            android:text="LOGIN"
+            android:textColor="#000000"
+            android:layout_marginBottom="2dp"
+            android:textSize="18sp" />
 
-        <CheckBox
-            android:id="@+id/checkbox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            android:text="Remember Me" />
-
-        <TextView
-            android:id="@+id/JsonResponse"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="25dp"
-            android:layout_marginTop="25dp"
-            android:gravity="center"
-            android:text="Server Response"
-            android:textSize="20sp" />
 
     </LinearLayout>
+
 </RelativeLayout>
