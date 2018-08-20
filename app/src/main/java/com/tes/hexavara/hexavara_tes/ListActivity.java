@@ -58,31 +58,25 @@ public class ListActivity extends AppCompatActivity {
         address  = (TextView)findViewById(R.id.address);
         recyclerView = (RecyclerView)findViewById(R.id.rv_list);
         profile = (CircleImageView)findViewById(R.id.circle_profile);
-        String fname = getIntent().getStringExtra(EXTRA_NAME);
-        fullname.setText(fname);
+        String namefull = getIntent().getStringExtra(EXTRA_NAME);
+        fullname.setText(namefull);
         String id = getIntent().getStringExtra(EXTRA_ID);
         username.setText(id);
-        String uemail = getIntent().getStringExtra(EXTRA_EMAIL);
-        email.setText(uemail);
-        String uaddress = getIntent().getStringExtra(EXTRA_ADDRESS);
-        address.setText(uaddress);
-        String utoken = getIntent().getStringExtra(EXTRA_TOKEN);
-        token = utoken;
-        String uimage = getIntent().getStringExtra(EXTRA_IMAGE);
-        Glide.with(getApplicationContext()).load("http://"+uimage).into(profile);
+        String useremail = getIntent().getStringExtra(EXTRA_EMAIL);
+        email.setText(useremail);
+        String useraddress = getIntent().getStringExtra(EXTRA_ADDRESS);
+        address.setText(useraddress);
+        String usertoken = getIntent().getStringExtra(EXTRA_TOKEN);
+        token = usertoken;
+        String userimage = getIntent().getStringExtra(EXTRA_IMAGE);
+        Glide.with(getApplicationContext()).load("http://"+userimage).into(profile);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         list = new ArrayList<>();
 
-        //ListData();
         loadRecyclerViewData();
     }
-    /*private void loadRecyclerViewData(){
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new ListItemAdapter(list, this);
-        recyclerView.setAdapter(adapter);
-    }*/
+
     private void loadRecyclerViewData(){
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading data...");
@@ -120,7 +114,6 @@ public class ListActivity extends AppCompatActivity {
                 progressDialog.dismiss();
                 Toast.makeText(ListActivity.this,error.toString(),Toast.LENGTH_LONG).show();
                 error.printStackTrace();
-                //requestQueue.stop();
             }
         }){
             public Map<String, String> getHeaders()  {
@@ -131,8 +124,5 @@ public class ListActivity extends AppCompatActivity {
         };
         RequestQueue requestQueue = Volley.newRequestQueue(ListActivity.this);
         requestQueue.add(stringRequest);
-        //Intent i1 = new Intent(getApplicationContext(),LoginActivity.class);
-        //startActivity(i1);
-        //finish();
     }
 }

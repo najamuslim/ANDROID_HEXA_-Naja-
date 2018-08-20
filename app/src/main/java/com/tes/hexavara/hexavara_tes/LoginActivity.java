@@ -28,11 +28,8 @@ package com.tes.hexavara.hexavara_tes;
         import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
-    Boolean errorserver=false;
     EditText user,password;
     Button login;
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
     String Name,Id,Email,Address,Image,Token;
     String url = "http://hexavara.ip-dynamic.com/androidrec/public/api/login";
     @Override
@@ -56,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         final String usrname = user.getText().toString();
         final String usrpass = password.getText().toString();
         if(usrname.length() == 0 || usrpass.length() < 6) {
-            Toast.makeText(this,"error username or password",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"wrong username or password",Toast.LENGTH_LONG).show();
         }
         else {
             final RequestQueue requestQueue = Volley.newRequestQueue(LoginActivity.this);
@@ -67,31 +64,22 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(String response) {
 
-                            JSONObject r = null;
+                            JSONObject User = null;
                             try {
-                                r = new JSONObject(response);
+                                User = new JSONObject(response);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                             try {
-                                    //Log.e("AAA", "onCreate: "+User.getString("")+" "+User.getInt(""));
-                                    String name = r.getString("fullname");
-                                    Name = name;
-                                    String id   = r.getString("username");
-                                    Id = id;
-                                    String email = r.getString("email");
-                                    Email = email;
-                                    String address = r.getString("address");
-                                    Address = address;
-                                    String image = r.getString("photo");
-                                    Image = image;
-                                    String token = r.getString("token");
-                                    Token = token;
-
+                                    Name = User.getString("fullname");
+                                    Id = User.getString("username");
+                                    Email = User.getString("email");
+                                    Address = User.getString("address");
+                                    Image= User.getString("photo");
+                                    Token = User.getString("token");
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
-                                //Toast.makeText(LoginActivity.this,Token,Toast.LENGTH_LONG).show();
                                 Intent i1 = new Intent(LoginActivity.this, ListActivity.class);
                                 i1.putExtra(ListActivity.EXTRA_NAME, Name);
                                 i1.putExtra(ListActivity.EXTRA_ID, Id);
@@ -105,7 +93,6 @@ public class LoginActivity extends AppCompatActivity {
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    errorserver=true;
                     Toast.makeText(LoginActivity.this,error.toString(),Toast.LENGTH_LONG).show();
                     error.printStackTrace();
                     requestQueue.stop();

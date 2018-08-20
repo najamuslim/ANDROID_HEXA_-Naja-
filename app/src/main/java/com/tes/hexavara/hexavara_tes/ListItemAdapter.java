@@ -7,11 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.android.volley.Response;
 import com.bumptech.glide.Glide;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.CategoryViewHolder> {
@@ -33,14 +29,14 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.Catego
     public void onBindViewHolder(CategoryViewHolder holder, int position) {
         ListItem listItem = listItems.get(position);
 
-        holder.itHead.setText(listItem.getHead());
-        holder.itDesc.setText(listItem.getDesc());
+        holder.itemHead.setText(listItem.getHead());
+        holder.itemDesc.setText(listItem.getDesc());
 
         Glide.with(context)
                 .load(listItem.getPhoto())
                 .override(120, 100)
                 .crossFade()
-                .into(holder.itPhoto);
+                .into(holder.itemPhoto);
     }
 
     @Override
@@ -49,15 +45,15 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.Catego
     }
 
     public class CategoryViewHolder extends RecyclerView.ViewHolder{
-        TextView itHead;
-        TextView itDesc;
-        ImageView itPhoto;
+        TextView itemHead;
+        TextView itemDesc;
+        ImageView itemPhoto;
 
         public CategoryViewHolder(View itemView) {
             super(itemView);
-            itHead = (TextView)itemView.findViewById(R.id.clientName);
-            itDesc = (TextView)itemView.findViewById(R.id.clientSalary);
-            itPhoto = (ImageView)itemView.findViewById(R.id.client_img);
+            itemHead = (TextView)itemView.findViewById(R.id.clientName);
+            itemDesc = (TextView)itemView.findViewById(R.id.clientSalary);
+            itemPhoto = (ImageView)itemView.findViewById(R.id.client_img);
         }
     }
 }
