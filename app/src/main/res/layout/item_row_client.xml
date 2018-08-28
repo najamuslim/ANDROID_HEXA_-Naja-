@@ -6,6 +6,7 @@
     android:background="#000000"
     android:layout_height="wrap_content">
     <LinearLayout
+        android:id="@+id/itemrv"
         android:layout_width="match_parent"
         android:layout_height="110dp"
         android:orientation="horizontal"

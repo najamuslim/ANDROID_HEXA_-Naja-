@@ -48,7 +48,7 @@ public class ListActivity extends AppCompatActivity {
     String url = "http://hexavara.ip-dynamic.com/androidrec/public/api/mylist";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
         fullname = (TextView)findViewById(R.id.fullName);
@@ -93,11 +93,12 @@ public class ListActivity extends AppCompatActivity {
 
                             for(int i=0; i<jsonArray.length(); i++){
                                 JSONObject o = jsonArray.getJSONObject(i);
+                                Integer Id = o.getInt("id");
                                 String Name = o.getString("name");
                                 String Salary = o.getString("salary");
                                 String Image = o.getString("image");
                                 ListItem item = new ListItem(
-                                      Name,Salary,"http://"+Image
+                                      Id,Name,Salary,"http://"+Image
                                 );
                                 list.add(item);
                             }

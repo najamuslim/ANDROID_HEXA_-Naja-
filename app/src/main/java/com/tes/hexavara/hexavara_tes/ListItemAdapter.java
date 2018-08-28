@@ -1,11 +1,14 @@
 package com.tes.hexavara.hexavara_tes;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import java.util.List;
@@ -27,7 +30,7 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.Catego
 
     @Override
     public void onBindViewHolder(CategoryViewHolder holder, int position) {
-        ListItem listItem = listItems.get(position);
+        final ListItem listItem = listItems.get(position);
 
         holder.itemHead.setText(listItem.getHead());
         holder.itemDesc.setText(listItem.getDesc());
@@ -37,6 +40,18 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.Catego
                 .override(120, 100)
                 .crossFade()
                 .into(holder.itemPhoto);
+
+        holder.itemLinear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i1 = new Intent(context, ItemActivity.class);
+                i1.putExtra(ItemActivity.EXTRA_ID,listItem.getID());
+                i1.putExtra(ItemActivity.EXTRA_NAME,listItem.getHead());
+                i1.putExtra(ItemActivity.EXTRA_SALARY,listItem.getDesc());
+                context.startActivity(i1);
+            }
+        });
+
     }
 
     @Override
@@ -48,12 +63,14 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.Catego
         TextView itemHead;
         TextView itemDesc;
         ImageView itemPhoto;
+        LinearLayout itemLinear;
 
         public CategoryViewHolder(View itemView) {
             super(itemView);
             itemHead = (TextView)itemView.findViewById(R.id.clientName);
             itemDesc = (TextView)itemView.findViewById(R.id.clientSalary);
             itemPhoto = (ImageView)itemView.findViewById(R.id.client_img);
+            itemLinear = (LinearLayout)itemView.findViewById(R.id.itemrv);
         }
     }
 }
